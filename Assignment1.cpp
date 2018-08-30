@@ -7,14 +7,16 @@ using namespace std;
 
 int main() {
     string input;
-    string connectors = "!V^v";
+    string connectors = "!V^v->";
+    string alphabet = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
     
     cout << "Enter a WFF: ";
     getline(cin, input);
     
-    bool lastWasAlpha = false;
-    bool lastWasNot = false;
-    bool lastWasConnector = false;
+    bool lastAlphabet = false;
+    bool lastNot = false;
+    bool lastConnector = false;
+    bool lastDash = false;
     bool isValid = true;
     
     for (auto c: input){
@@ -25,25 +27,37 @@ int main() {
         
         if (connectors.find(c) != string::npos) {
             if (c != '!'){
-                if (!lastWasAlpha){
+                if (!lastAlphabet && lastDash == false){
                     isValid = false;
                 }
-                lastWasConnector = true;
+                if (c == '-' && lastAlphabet == true) {
+                    lastDash = true;
+                }
+                else if (c == '>' && lastDash == true) {
+                    lastConnector = true;
+                }
+                else if (connectors.find(c) != string::npos) {
+                    lastConnector = true;
+                }
+                else {
+                    isValid = false;
+                }
+                lastConnector = true;
             }
             else {
-                if (lastWasAlpha) {
+                if (lastAlphabet) {
                     isValid = false;
                     break;
                 }
-                lastWasNot = true;
+                lastNot = true;
             }
-            lastWasAlpha = false;
+            lastAlphabet = false;
         }
-        else if (isalpha(c)) {
-            if (lastWasAlpha){
+        else if (alphabet.find(c) != string::npos) {
+            if (lastAlphabet){
                 isValid = false;
         }
-            lastWasAlpha = true;
+            lastAlphabet = true;
             continue;
         }
         else {
