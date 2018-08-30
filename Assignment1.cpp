@@ -7,10 +7,10 @@ using namespace std;
 
 int main() {
     string input;
-    string connectors = "!V^v->";
-    string alphabet = "ABCDEFGHIJKLMNOPQRSTUWXYZ";
+    string connectors = "!V^v->"; // Includes all Connectors
+    string alphabet = "ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuwxyz"; // Includes the alphabet except 'v' and 'V'
     
-    cout << "Enter a WFF: ";
+    cout << "Enter a WFF: "; // Asks user to enter WFF
     getline(cin, input);
     
     bool lastAlphabet = false;
@@ -27,22 +27,22 @@ int main() {
         
         if (connectors.find(c) != string::npos) {
             if (c != '!'){
-                if (!lastAlphabet && lastDash == false){
+                if (!lastAlphabet && !lastDash){
                     isValid = false;
-                }
-                if (c == '-' && lastAlphabet == true) {
+               }
+                if (c == '-' && lastAlphabet) { // Checks if c was dash and last was an alphabet character
                     lastDash = true;
                 }
-                else if (c == '>' && lastDash == true) {
+                else if (c == '>' && lastDash) { // Checks to make sure that is there is a dash that follows the greater than.
                     lastConnector = true;
+                    lastDash = false;
                 }
-                else if (connectors.find(c) != string::npos) {
+                else if (connectors.find(c) != string::npos) { // Checks c for a connector other than '-' or '>'.
                     lastConnector = true;
                 }
                 else {
                     isValid = false;
                 }
-                lastConnector = true;
             }
             else {
                 if (lastAlphabet) {
@@ -53,7 +53,7 @@ int main() {
             }
             lastAlphabet = false;
         }
-        else if (alphabet.find(c) != string::npos) {
+        else if (alphabet.find(c) != string::npos) { // Checks if c is in the alphabet.
             if (lastAlphabet){
                 isValid = false;
         }
