@@ -54,7 +54,7 @@ int main() {
             lastAlphabet = false;
         }
         else if (alphabet.find(c) != string::npos) { // Checks if c is in the alphabet.
-            if (lastAlphabet){
+            if (lastAlphabet || lastDash){
                 isValid = false;
         }
             lastAlphabet = true;
