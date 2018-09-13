@@ -51,5 +51,5 @@ For some cities, all people who live in the city don't love the city, but all tr
 
 “No traveler loves the city they live in.”
 <pre>
-∀x∀y(Traveler(x) ^ City(y) -> Lives(x,y) ^ 'Loves(x,y))
+∀x∀y(Traveler(x) ^ City(y) ^ Lives(x,y) -> 'Loves(x,y))
 </pre>
