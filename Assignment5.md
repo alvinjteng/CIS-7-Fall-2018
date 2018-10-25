@@ -1,8 +1,9 @@
 Part 1:
 
-1. 
+1. Proof by Contradiction
 sqrt(2) = irrational\
-
+sqrt(2) = 1.41\
+w=p/q
 
 2. Proof by Exhaustion\
 sqrt(25) = 5 | 5+5 = 10\
@@ -19,11 +20,17 @@ let p = n+m+1\
 True.
 
 4. even = (2n)+ n^2\
-Direct/Contrapositive
-
+Direct Proof
+2n+1 + 2n+1 = 2n\
+4n+2 = 2n\
+Even
 
 5. n^2 = odd, then n = odd\
-Contradiction
+Contraposition\
+n^2 = even, n = even\
+n = 2k\
+(2k)^2\
+4k^2 = even\
 
 Part 2:
 
@@ -50,4 +57,14 @@ Inductive Hypothesis:\
 3n^3+6n+n+1 = (n^3+3n^2+3n+1+2n+2)/3
 3n^3+7n+1 = (n^3+3n^2+5n+3)/3
 
-3.
+3. n>= 1, 9^n-1 is divisible by 8
+Base case:\
+9^1-1\
+8/8\
+1 = 1\
+Inductive Hypothesis:\
+(9^(k+1)-1)\
+(8m+1)* 9-1\
+72m+9\
+8(9m+1)\
+Divisible by 8.
